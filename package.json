@@ -1,6 +1,7 @@
 {
   "name": "sync-troubleshooting-app",
   "version": "1.0.0",
+  "author": "UiO <milagros@dhis2.org>",
   "description": "",
   "license": "BSD-3-Clause",
   "private": true,
