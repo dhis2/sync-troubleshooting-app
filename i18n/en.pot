@@ -5,11 +5,99 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-08-21T04:30:31.750Z\n"
-"PO-Revision-Date: 2024-08-21T04:30:31.750Z\n"
+"POT-Creation-Date: 2024-09-04T15:59:31.376Z\n"
+"PO-Revision-Date: 2024-09-04T15:59:31.376Z\n"
 
-msgid "Hello {{name}}"
-msgstr "Hello {{name}}"
+msgid ""
+"Choose a check to run from the list, or run all checks from the toolbar "
+"above"
+msgstr ""
+"Choose a check to run from the list, or run all checks from the toolbar "
+"above"
 
-msgid "Welcome to DHIS2!"
-msgstr "Welcome to DHIS2!"
+msgid "Status"
+msgstr "Status"
+
+msgid "Code"
+msgstr "Code"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "About this check"
+msgstr "About this check"
+
+msgid "Show more"
+msgstr "Show more"
+
+msgid "An unknown error occurred"
+msgstr "An unknown error occurred"
+
+msgid "Failed to load"
+msgstr "Failed to load"
+
+msgid "Import Job ID"
+msgstr "Import Job ID"
+
+msgid "Import Job type"
+msgstr "Import Job type"
+
+msgid "User id"
+msgstr "User id"
+
+msgid "Incident date"
+msgstr "Incident date"
+
+msgid "Last executed"
+msgstr "Last executed"
+
+msgid "Errors"
+msgstr "Errors"
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Tracker"
+msgstr "Tracker"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Sort"
+msgstr "Sort"
+
+msgid "Sort by"
+msgstr "Sort by"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Filter by"
+msgstr "Filter by"
+
+msgid "Latest"
+msgstr "Latest"
+
+msgid "Oldest"
+msgstr "Oldest"
+
+msgid "A-Z"
+msgstr "A-Z"
+
+msgid "Section"
+msgstr "Section"
+
+msgid "Severity"
+msgstr "Severity"
+
+msgid "Number of errors"
+msgstr "Number of errors"
+
+msgid "User"
+msgstr "User"
+
+msgid "Synchronization Troubleshooting"
+msgstr "Synchronization Troubleshooting"
+
+msgid "Now"
+msgstr "Now"
