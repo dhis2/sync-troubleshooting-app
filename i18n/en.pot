@@ -5,11 +5,38 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-08-21T04:30:31.750Z\n"
-"PO-Revision-Date: 2024-08-21T04:30:31.750Z\n"
+"POT-Creation-Date: 2024-09-25T15:05:33.634Z\n"
+"PO-Revision-Date: 2024-09-25T15:05:33.634Z\n"
 
-msgid "Hello {{name}}"
-msgstr "Hello {{name}}"
+msgid "Errors observed in the past 24 hours."
+msgstr "Errors observed in the past 24 hours."
 
-msgid "Welcome to DHIS2!"
-msgstr "Welcome to DHIS2!"
+msgid "Search by message"
+msgstr "Search by message"
+
+msgid "Sort"
+msgstr "Sort"
+
+msgid "Sort by"
+msgstr "Sort by"
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Tracker"
+msgstr "Tracker"
+
+msgid "Latest"
+msgstr "Latest"
+
+msgid "Oldest"
+msgstr "Oldest"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "A-Z"
+msgstr "A-Z"
+
+msgid "Synchronization Troubleshooting"
+msgstr "Synchronization Troubleshooting"
