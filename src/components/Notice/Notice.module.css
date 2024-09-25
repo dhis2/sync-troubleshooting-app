@@ -1,0 +1,6 @@
+.box {
+    background-color: var(--colors-grey200);
+    padding: var(--spacers-dp8);
+    text-align: center;
+    color: var(--colors-grey700);
+}

@@ -1,0 +1,10 @@
+.layoutWrapper {
+    display: grid;
+    grid-template-columns: 392px minmax(400px, 1fr);
+    block-size: 100%;
+    overflow: auto;
+}
+
+.layoutWrapper > * {
+    overflow-y: auto;
+}
