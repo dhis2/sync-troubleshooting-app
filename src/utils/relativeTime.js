@@ -2,6 +2,11 @@ import i18n from '@dhis2/d2-i18n'
 
 const language = i18n.language?.replace('_', '-') || 'en-gb'
 
+export const [selectedLocale] = Intl.DateTimeFormat.supportedLocalesOf([
+    language,
+    'en-gb',
+])
+
 /**
  * Find which of the two locales (the variable language and 'en') is supported by the user's browser for relative time formatting
  * */
