@@ -1,26 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import {
     DetailsView,
     ErrorOrLoading,
     EVENT,
+    filterByType,
     Layout,
     List,
     Notice,
     SORT,
+    sortElements,
     Toolbar,
     ToolbarTabs,
 } from '../../../components'
 import { errorListTest } from './jobErrorTest'
 import css from './List.module.css'
+import { useJobErrors } from './use-job-errors'
 
 export const ErrorList = () => {
+    const { error, jobErrors, loading } = useJobErrors()
     const [search, setSearch] = useState('')
     const [selectedTab, setSelectedTab] = useState(EVENT)
     const [selectedSort, setSelectedSort] = useState(SORT['latest'].value)
     const [selectedArtifact, setSelectedArtifact] = useState(null)
 
-    const selectedEvent = selectedTab === EVENT
-    const loading = false
+    const sorter = useMemo(() => SORT[selectedSort].sorter, [selectedSort])
+
+    const sortedElements = useMemo(
+        () =>
+            sortElements(
+                filterByType(errorListTest, selectedTab.toUpperCase()),
+                sorter
+            ),
+        [errorListTest, selectedTab, sorter]
+    )
 
     return (
         <div className={css.listWrapper}>
@@ -33,7 +45,6 @@ export const ErrorList = () => {
                 setSearch={setSearch}
                 sort={selectedSort}
                 setSort={setSelectedSort}
-                selectedEvent={selectedEvent}
             />
             <Layout>
                 <ErrorOrLoading loading={loading}>
@@ -42,7 +53,7 @@ export const ErrorList = () => {
                         <List
                             setSelectedArtifact={setSelectedArtifact}
                             selectedArtifact={selectedArtifact}
-                            artifacts={errorListTest}
+                            artifacts={sortedElements}
                         />
                     </div>
                 </ErrorOrLoading>
