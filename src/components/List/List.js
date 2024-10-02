@@ -38,7 +38,7 @@ export const ListItem = memo(function ListItem({
     const mergedArtifacts = 1
 
     const getType = (value) =>
-        value === EVENT ? i18n.t('Event') : i18n.t('Enrollment')
+        value === EVENT ? i18n.t('Event') : i18n.t('Tracked Entity')
 
     return (
         <div

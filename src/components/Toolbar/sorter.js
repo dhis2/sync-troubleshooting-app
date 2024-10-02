@@ -31,7 +31,7 @@ export const SORT_OPTIONS = Object.values(SORT).map((sort) => ({
 /**
  * Sort elements based on the sort expression
  * */
-export const sortElements = (list, expression) => list.sort(expression)
+export const sortElements = (list, expression) => list?.sort(expression)
 
 /**
  * Search elements/errors based on their message
@@ -46,3 +46,9 @@ export const filterElementMessage = (element, filter) => {
 
 export const filterSearchElements = (list, searchExpression) =>
     list?.filter((element) => filterElementMessage(element, searchExpression))
+
+/**
+ * Filter elements/errors by type Event or Tracker
+ * */
+export const filterByType = (list, filter) =>
+    list?.filter((element) => element.type === filter)

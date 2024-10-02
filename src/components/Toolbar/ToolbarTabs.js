@@ -5,7 +5,7 @@ import React from 'react'
 import css from './Toolbar.module.css'
 
 export const EVENT = 'event'
-export const TRACKER = 'tracker'
+export const TRACKER = 'tracked_entity'
 
 export const ToolbarTabs = ({ selectedTab, setSelectedTab }) => {
     return (
