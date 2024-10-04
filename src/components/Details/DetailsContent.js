@@ -7,7 +7,7 @@ import { StatusIcon } from '../List/StatusIcon'
 import css from './Details.module.css'
 import { Notice } from './Notice'
 
-const CompletedTime = ({ issuesCount, finishedTime }) => {
+const CompletedTime = ({ issuesCount, finishedTime, latest }) => {
     const { fromServerDate } = useTimeZoneConversion()
 
     const latestRun = fromServerDate(finishedTime)
@@ -18,10 +18,15 @@ const CompletedTime = ({ issuesCount, finishedTime }) => {
 
     return (
         <header title={latestRun.getClientZonedISOString()}>
-            {i18n.t('Latest error {{time}}', {
-                time: formattedLatestRun,
-                interpolation: { escapeValue: false },
-            })}
+            {latest
+                ? i18n.t('Latest error {{time}}', {
+                      time: formattedLatestRun,
+                      interpolation: { escapeValue: false },
+                  })
+                : i18n.t('Error {{time}}', {
+                      time: formattedLatestRun,
+                      interpolation: { escapeValue: false },
+                  })}
             <StatusIcon count={issuesCount} />
         </header>
     )
@@ -30,80 +35,100 @@ const CompletedTime = ({ issuesCount, finishedTime }) => {
 CompletedTime.propTypes = {
     finishedTime: PropTypes.string,
     issuesCount: PropTypes.number,
+    latest: PropTypes.bool,
 }
 
 export const DetailsContent = ({ artifact }) => {
     return (
         <div className={css.detailsContentWrapper}>
-            <CompletedTime finishedTime={artifact.finished} issuesCount={0} />
-            <div className={css.detailsContent}>
-                <Notice status="error" title={artifact.user}>
-                    <>
-                        <span className={css.detailsItem}>
-                            {artifact.message}
-                        </span>
-                        <div className={css.detailsWrapper}>
-                            <DetailsItem
-                                value={artifact.id}
-                                label={i18n.t('Error ID:')}
-                            />
-                            <DetailsItem
-                                value={artifact.jobId}
-                                label={i18n.t('Import Job ID:')}
-                            />
+            <>
+                {artifact.errors.map((error, index) => (
+                    <div key={error.jobId}>
+                        <>
+                            {index === 0 ? (
+                                <CompletedTime
+                                    finishedTime={error.finished}
+                                    issuesCount={0}
+                                    latest={true}
+                                />
+                            ) : (
+                                <CompletedTime
+                                    finishedTime={error.finished}
+                                    issuesCount={0}
+                                />
+                            )}
+                        </>
+                        <div className={css.detailsContent}>
+                            <Notice status="error" title={error.user}>
+                                <>
+                                    <span className={css.detailsItem}>
+                                        {error.message}
+                                    </span>
+                                    <div className={css.detailsWrapper}>
+                                        <DetailsItem
+                                            value={error.id}
+                                            label={i18n.t('Error ID:')}
+                                        />
+                                        <DetailsItem
+                                            value={error.jobId}
+                                            label={i18n.t('Import Job ID:')}
+                                        />
 
-                            {artifact?.orgUnit && (
-                                <DetailsItem
-                                    value={artifact.orgUnit}
-                                    label={i18n.t('Org Unit:')}
-                                />
-                            )}
-                            {artifact?.program && (
-                                <DetailsItem
-                                    value={artifact.program}
-                                    label={i18n.t('Program:')}
-                                />
-                            )}
-                            {artifact?.enrollment && (
-                                <DetailsItem
-                                    value={artifact.enrollment}
-                                    label={i18n.t('Enrollment:')}
-                                />
-                            )}
-                            {artifact?.programStage && (
-                                <DetailsItem
-                                    value={artifact.programStage}
-                                    label={i18n.t('Program Stage:')}
-                                />
-                            )}
-                            {artifact?.event && (
-                                <DetailsItem
-                                    value={artifact.event}
-                                    label={i18n.t('Event:')}
-                                />
-                            )}
-                            {artifact?.tei && (
-                                <DetailsItem
-                                    value={artifact.tei}
-                                    label={i18n.t('TEI:')}
-                                />
-                            )}
-                            {artifact?.dataElement && (
-                                <DetailsItem
-                                    value={artifact.dataElement}
-                                    label={i18n.t('Data Element:')}
-                                />
-                            )}
-                            {artifact?.tea && (
-                                <DetailsItem
-                                    value={artifact.tea}
-                                    label={i18n.t('TEA:')}
-                                />
-                            )}
+                                        {error?.orgUnit && (
+                                            <DetailsItem
+                                                value={error.orgUnit}
+                                                label={i18n.t('Org Unit:')}
+                                            />
+                                        )}
+                                        {error?.program && (
+                                            <DetailsItem
+                                                value={error.program}
+                                                label={i18n.t('Program:')}
+                                            />
+                                        )}
+                                        {error?.enrollment && (
+                                            <DetailsItem
+                                                value={error.enrollment}
+                                                label={i18n.t('Enrollment:')}
+                                            />
+                                        )}
+                                        {error?.programStage && (
+                                            <DetailsItem
+                                                value={error.programStage}
+                                                label={i18n.t('Program Stage:')}
+                                            />
+                                        )}
+                                        {error?.event && (
+                                            <DetailsItem
+                                                value={error.event}
+                                                label={i18n.t('Event:')}
+                                            />
+                                        )}
+                                        {error?.tei && (
+                                            <DetailsItem
+                                                value={error.tei}
+                                                label={i18n.t('TEI:')}
+                                            />
+                                        )}
+                                        {error?.dataElement && (
+                                            <DetailsItem
+                                                value={error.dataElement}
+                                                label={i18n.t('Data Element:')}
+                                            />
+                                        )}
+                                        {error?.tea && (
+                                            <DetailsItem
+                                                value={error.tea}
+                                                label={i18n.t('TEA:')}
+                                            />
+                                        )}
+                                    </div>
+                                </>
+                            </Notice>
                         </div>
-                    </>
-                </Notice>
-            </div>
+                    </div>
+                ))}
+            </>
         </div>
     )
 }

@@ -34,9 +34,6 @@ export const ListItem = memo(function ListItem({
     artifact,
     selected,
 }) {
-    //just for testing the component
-    const mergedArtifacts = 1
-
     const getType = (value) =>
         value === EVENT ? i18n.t('Event') : i18n.t('Tracked Entity')
 
@@ -61,7 +58,7 @@ export const ListItem = memo(function ListItem({
             </div>
             <span className={css.statusIcon}>
                 <StatusIcon
-                    count={mergedArtifacts}
+                    count={artifact.errors.length}
                     loading={artifact.loading}
                 />
             </span>
