@@ -104,3 +104,24 @@
     color: var(--colors-grey900);
     margin-left: var(--spacers-dp8);
 }
+
+.detailsExpandableWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp8);
+}
+
+.detailsExpandableWrapper header {
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    gap: 16px;
+}
+
+.completedTimeWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s;
+    cursor: pointer;
+}
