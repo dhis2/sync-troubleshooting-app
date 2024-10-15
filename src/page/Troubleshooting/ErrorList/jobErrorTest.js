@@ -353,3 +353,295 @@ const errorMock = [
         input: null,
     },
 ]
+
+export const errorToDisplayMock = [
+    {
+        message:
+            'Value `true` is not a valid option code in option set `pC3N9N77UmT`',
+        id: 'oi3PMIGYJH8',
+        finished: '2024-10-01T12:30:00Z',
+        type: 'TRACKED_ENTITY',
+        code: 'E1125',
+        status: 'Error',
+        errors: [
+            {
+                code: 'E1125',
+                finished: '2024-09-26T11:44:42.538304',
+                id: 'oi3PMIGYJH8',
+                status: 'Error',
+                message:
+                    'Value `true` is not a valid option code in option set `pC3N9N77UmT`',
+                user: 'GOLswS44mh8',
+                args: ['true', 'pC3N9N77UmT'],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'BwtAG7qV03o',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'TRACKED_ENTITY',
+            },
+            {
+                code: 'E1125',
+                finished: '2024-10-03T11:00:29.237012',
+                id: 'oi3PMIGYJH8',
+                status: 'Error',
+                message:
+                    'Value `true` is not a valid option code in option set `pC3N9N77UmT`',
+                user: 'GOLswS44mh8',
+                args: ['true', 'pC3N9N77UmT'],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'fvG5Sa9flYF',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'TRACKED_ENTITY',
+            },
+        ],
+    },
+    {
+        message:
+            'Value `123` is not a valid option code in option set `pC3N9N77UmT`',
+        id: 'uzSPnWHV7Ab',
+        finished: '2024-10-01T12:30:00Z',
+        type: 'TRACKED_ENTITY',
+        code: 'E1125',
+        status: 'Error',
+        errors: [
+            {
+                code: 'E1125',
+                finished: '2024-10-03T11:00:29.237012',
+                id: 'uzSPnWHV7Ab',
+                status: 'Error',
+                message:
+                    'Value `123` is not a valid option code in option set `pC3N9N77UmT`',
+                user: 'GOLswS44mh8',
+                args: ['123', 'pC3N9N77UmT'],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'fvG5Sa9flYF',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'TRACKED_ENTITY',
+            },
+            {
+                code: 'E1125',
+                finished: '2024-10-03T11:00:29.237012',
+                id: 'uzSPnWHV7Ab',
+                status: 'Error',
+                message:
+                    'Value `123` is not a valid option code in option set `pC3N9N77UmT`',
+                user: 'GOLswS44mh8',
+                args: ['123', 'pC3N9N77UmT'],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'BwtAG7qV03o',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'TRACKED_ENTITY',
+            },
+        ],
+    },
+    {
+        message:
+            'Wrong valueType: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+        id: 'oKn0OF5z7YA',
+        finished: '2024-09-26T11:44:42.538304',
+        type: 'TRACKED_ENTITY',
+        code: 'E1014',
+        status: 'Error',
+        errors: [
+            {
+                code: 'E1014',
+                finished: '2024-09-26T11:44:42.538304',
+                id: 'oKn0OF5z7YA',
+                status: 'Error',
+                message:
+                    'Wrong valueType: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+                user: 'GOLswS44mh8',
+                args: [
+                    'MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)',
+                ],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'zlEKs5yhSR3',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'EVENT',
+            },
+        ],
+    },
+    {
+        message:
+            'Could not find OrganisationUnit: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+        id: 'oKn0OF5z7Y8',
+        finished: '2024-09-30T17:44:42.538304',
+        type: 'EVENT',
+        code: 'E1011',
+        status: 'Error',
+        errors: [
+            {
+                code: 'E1011',
+                finished: '2024-09-30T17:44:42.538304',
+                id: 'oKn0OF5z7Y8',
+                status: 'Error',
+                message:
+                    'Could not find OrganisationUnit: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+                user: 'GOLswS44mh8',
+                args: [
+                    'MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)',
+                ],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'zlEKs5yhSR3',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'EVENT',
+            },
+            {
+                code: 'E1011',
+                finished: '2024-09-25T17:44:42.538304',
+                id: 'oKn0OF5z7Y8',
+                status: 'Error',
+                message:
+                    'Could not find OrganisationUnit: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+                user: 'GOLswS44mh8',
+                args: [
+                    'MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)',
+                ],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'zlEKs5yhSR8',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'EVENT',
+            },
+            {
+                code: 'E1011',
+                finished: '2024-09-07T17:44:42.538304',
+                id: 'oKn0OF5z7Y8',
+                status: 'Error',
+                message:
+                    'Could not find OrganisationUnit: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+                user: 'GOLswS44mh8',
+                args: [
+                    'MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)',
+                ],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'zlEKs5yhSM3',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'EVENT',
+            },
+        ],
+    },
+    {
+        message:
+            'Could not find DataElement: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+        id: 'oKn0OF5z7Yl',
+        finished: '2024-09-21T17:44:42.538304',
+        type: 'EVENT',
+        code: 'E1012',
+        status: 'Error',
+        errors: [
+            {
+                code: 'E1012',
+                finished: '2024-09-21T17:44:42.538304',
+                id: 'oKn0OF5z7Yl',
+                status: 'Error',
+                message:
+                    'Could not find DataElement: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+                user: 'GOLswS44mh8',
+                args: [
+                    'MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)',
+                ],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'zlEKs5yhSR4',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'EVENT',
+            },
+            {
+                code: 'E1012',
+                finished: '2024-09-20T17:44:42.538304',
+                id: 'oKn0OF5z7Yl',
+                status: 'Error',
+                message:
+                    'Could not find DataElement: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+                user: 'GOLswS44mh8',
+                args: [
+                    'MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)',
+                ],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'zlEKs5yhSR7',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'EVENT',
+            },
+            {
+                code: 'E1012',
+                finished: '2024-09-13T17:44:42.538304',
+                id: 'oKn0OF5z7Yl',
+                status: 'Error',
+                message:
+                    'Could not find DataElement: `MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)`, linked to Event.',
+                user: 'GOLswS44mh8',
+                args: [
+                    'MetadataIdentifier(idScheme=UID, identifier=testOrg, attributeValue=null)',
+                ],
+                dataElement: '',
+                enrollment: '',
+                event: '',
+                jobId: 'zlEKs5yhSA7',
+                orgUnit: '',
+                program: 'IpHINAT79UW', //
+                programStage: 'A03MvHHogjR', //
+                tea: 'w75KJ2mc4zz', //
+                tei: '',
+                type: 'EVENT',
+            },
+        ],
+    },
+]
