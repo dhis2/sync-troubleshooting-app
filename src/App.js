@@ -1,35 +1,19 @@
-import { DataQuery } from '@dhis2/app-runtime'
-import i18n from '@dhis2/d2-i18n'
+import { CssVariables, CssReset } from '@dhis2/ui'
 import React from 'react'
 import classes from './App.module.css'
+import i18n from './locales/index'
+import { SyncTroubleshooting } from './page'
 
-const query = {
-    me: {
-        resource: 'me',
-    },
-}
-
-const MyApp = () => (
-    <div className={classes.container}>
-        <DataQuery query={query}>
-            {({ error, loading, data }) => {
-                if (error) {
-                    return <span>ERROR</span>
-                }
-                if (loading) {
-                    return <span>...</span>
-                }
-                return (
-                    <>
-                        <h1>
-                            {i18n.t('Hello {{name}}', { name: data.me.name })}
-                        </h1>
-                        <h3>{i18n.t('Welcome to DHIS2!')}</h3>
-                    </>
-                )
-            }}
-        </DataQuery>
-    </div>
+const App = () => (
+    <>
+        <CssReset />
+        <CssVariables colors spacers />
+        <div className={classes.container}>
+            <div className={classes.contentWrapper}>
+                <SyncTroubleshooting />
+            </div>
+        </div>
+    </>
 )
 
-export default MyApp
+export default App

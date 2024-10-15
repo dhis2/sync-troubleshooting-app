@@ -1,0 +1,30 @@
+.toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-block: var(--spacers-dp8);
+    padding-inline: var(--spacers-dp16) var(--spacers-dp8);
+    border-width: 1px 0px 1px;
+    border-style: solid;
+    border-color: var(--colors-grey400);
+}
+
+.toolbarTabs {
+    border-width: 1px 0px 0px;
+    border-style: solid;
+    border-color: var(--colors-grey400);
+    box-shadow: none;
+}
+
+/* disable borders and shadows from UI TabBar and Tab
+Prevents "double" border
+*/
+.toolbarTabs div,
+.toolbarTabs button {
+    box-shadow: none;
+    border: none !important;
+}
+
+.searchInput {
+    inline-size: 180px;
+}
