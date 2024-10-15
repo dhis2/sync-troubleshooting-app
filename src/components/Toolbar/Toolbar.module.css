@@ -2,8 +2,8 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    padding: var(--spacers-dp8) var(--spacers-dp8) var(--spacers-dp8)
-        var(--spacers-dp16);
+    padding-block: var(--spacers-dp8);
+    padding-inline: var(--spacers-dp16) var(--spacers-dp8);
     border-width: 1px 0px 1px;
     border-style: solid;
     border-color: var(--colors-grey400);
