@@ -12,27 +12,42 @@ import {
     Toolbar,
     ToolbarTabs,
 } from '../../../components'
-import { errorListTest } from './jobErrorTest'
+import { errorToDisplayMock } from './jobErrorTest'
 import css from './List.module.css'
 import { useJobErrors } from './use-job-errors'
 
 export const ErrorList = () => {
-    const { error, jobErrors, loading } = useJobErrors()
+    const { error, jobErrors, loading, elements } = useJobErrors()
     const [search, setSearch] = useState('')
     const [selectedTab, setSelectedTab] = useState(EVENT)
     const [selectedSort, setSelectedSort] = useState(SORT['latest'].value)
     const [selectedArtifact, setSelectedArtifact] = useState(null)
 
     const sorter = useMemo(() => SORT[selectedSort].sorter, [selectedSort])
+    const [sortedElements, setSortedElements] = useState(null)
 
-    const sortedElements = useMemo(
-        () =>
-            sortElements(
-                filterByType(errorListTest, selectedTab.toUpperCase()),
-                sorter
-            ),
-        [errorListTest, selectedTab, sorter]
-    )
+    // check filter tab and sorter with real data
+    // check if its only because using memo??
+
+    useEffect(() => {
+        console.log('TYPE TAB', {
+            error,
+            jobErrors,
+            selectedTab,
+            sortedElements,
+            errorToDisplayMock,
+            elements,
+        })
+    }, [selectedTab])
+
+    useEffect(() => {
+        const sorted = sortElements(
+            //filterByType(errorToDisplayMock, selectedTab.toUpperCase()),
+            filterByType(elements, selectedTab.toUpperCase()),
+            sorter
+        )
+        setSortedElements(sorted)
+    }, [elements, selectedTab, sorter])
 
     return (
         <div className={css.listWrapper}>

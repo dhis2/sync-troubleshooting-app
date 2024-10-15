@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-09-27T12:49:10.846Z\n"
-"PO-Revision-Date: 2024-09-27T12:49:10.846Z\n"
+"POT-Creation-Date: 2024-10-04T16:52:52.792Z\n"
+"PO-Revision-Date: 2024-10-04T16:52:52.792Z\n"
 
 msgid "Code"
 msgstr "Code"
@@ -26,6 +26,9 @@ msgstr "Type"
 msgid "Latest error {{time}}"
 msgstr "Latest error {{time}}"
 
+msgid "Error {{time}}"
+msgstr "Error {{time}}"
+
 msgid "Choose an error from the list to see the details."
 msgstr "Choose an error from the list to see the details."
 
@@ -34,6 +37,9 @@ msgstr "An unknown error occurred"
 
 msgid "Failed to load"
 msgstr "Failed to load"
+
+msgid "Tracked Entity"
+msgstr "Tracked Entity"
 
 msgid "Errors observed in the past 24 hours."
 msgstr "Errors observed in the past 24 hours."
