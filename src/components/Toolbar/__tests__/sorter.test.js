@@ -89,7 +89,7 @@ test('"List" is sorted from oldest to latest element', () => {
         },
     ]
 
-    expect(sortElements(errorList, expression)).toEqual(sortedList)
+    expect(sortElements([...errorList], expression)).toEqual(sortedList)
 })
 
 test('"List" is sorted from latest to oldest element', () => {
@@ -138,7 +138,7 @@ test('"List" is sorted from latest to oldest element', () => {
         },
     ]
 
-    expect(sortElements(errorList, expression)).toEqual(sortedList)
+    expect(sortElements([...errorList], expression)).toEqual(sortedList)
 })
 
 test('"List" is sorted by element type or code', () => {
@@ -187,7 +187,7 @@ test('"List" is sorted by element type or code', () => {
         },
     ]
 
-    expect(sortElements(errorList, expression)).toEqual(sortedList)
+    expect(sortElements([...errorList], expression)).toEqual(sortedList)
 })
 
 test('"List" is sorted by element type or code', () => {
@@ -236,7 +236,7 @@ test('"List" is sorted by element type or code', () => {
         },
     ]
 
-    expect(sortElements(errorList, expression)).toEqual(sortedList)
+    expect(sortElements([...errorList], expression)).toEqual(sortedList)
 })
 
 test('"List" is sorted alphabetically', () => {
@@ -285,5 +285,5 @@ test('"List" is sorted alphabetically', () => {
         },
     ]
 
-    expect(sortElements(errorList, expression)).toEqual(sortedList)
+    expect(sortElements([...errorList], expression)).toEqual(sortedList)
 })
