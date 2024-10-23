@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+    DetailsView,
     ErrorOrLoading,
     EVENT,
     Layout,
@@ -45,6 +46,10 @@ export const ErrorList = () => {
                         />
                     </div>
                 </ErrorOrLoading>
+                <DetailsView
+                    selectedArtifact={selectedArtifact}
+                    artifacts={errorListTest}
+                />
             </Layout>
         </div>
     )

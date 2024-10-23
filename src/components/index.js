@@ -1,3 +1,4 @@
+export * from './Details'
 export * from './ErrorOrLoading'
 export * from './Layout'
 export * from './List'
