@@ -48,7 +48,7 @@ export const contentItems = [
 ]
 
 const DetailsItem = ({ label, value }) => (
-    <div className={css.detailsItemWrapper}>
+    <div>
         <span className={css.detailsItemLabel}>{label}</span>
         <span className={css.detailsItemValue}>{value}</span>
     </div>
@@ -82,6 +82,25 @@ export const Content = ({ artifact, error }) => (
 )
 
 Content.propTypes = {
-    artifact: PropTypes.object,
-    error: PropTypes.object,
+    artifact: PropTypes.shape({
+        message: PropTypes.string,
+    }),
+    error: PropTypes.shape({
+        code: PropTypes.string.isRequired,
+        finished: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
+        message: PropTypes.string.isRequired,
+        user: PropTypes.string.isRequired,
+        dataElement: PropTypes.string,
+        enrollment: PropTypes.string,
+        event: PropTypes.string,
+        jobId: PropTypes.string.isRequired,
+        orgUnit: PropTypes.string,
+        program: PropTypes.string,
+        programStage: PropTypes.string,
+        tea: PropTypes.string,
+        tei: PropTypes.string,
+        type: PropTypes.string,
+    }),
 }

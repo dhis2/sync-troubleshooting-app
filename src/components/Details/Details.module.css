@@ -54,7 +54,7 @@
     font-size: 14px;
     font-weight: 500;
     display: flex;
-    gap: 16px;
+    gap: var(--spacers-dp16);
 }
 
 .detailsContent {
@@ -83,12 +83,11 @@
 }
 
 .detailsWrapper {
-    margin: var(--spacers-dp24) 0 var(--spacers-dp16) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp8);
+    padding-top: var(--spacers-dp24);
     color: var(--colors-grey900);
-}
-
-.detailsItemWrapper {
-    margin-bottom: var(--spacers-dp8);
 }
 
 .detailsItemLabel {
@@ -98,4 +97,25 @@
 .detailsItemValue {
     color: var(--colors-grey900);
     margin-left: var(--spacers-dp8);
+}
+
+.detailsExpandableWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp8);
+}
+
+.detailsExpandableWrapper header {
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    gap: var(--spacers-dp16);
+}
+
+.completedTimeWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s;
+    cursor: pointer;
 }
