@@ -79,7 +79,7 @@
 
 .detailsItem {
     color: var(--colors-grey900);
-    margin-bottom: var(--spacers-dp8);
+    margin-block-end: var(--spacers-dp8);
 }
 
 .detailsWrapper {
