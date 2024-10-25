@@ -96,7 +96,7 @@
 
 .detailsItemValue {
     color: var(--colors-grey900);
-    margin-left: var(--spacers-dp8);
+    margin-inline-start: var(--spacers-dp8);
 }
 
 .detailsExpandableWrapper {
