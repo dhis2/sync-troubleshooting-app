@@ -48,8 +48,10 @@ const ExpandableContent = ({ latest, artifact, item }) => {
     return (
         <div className={css.detailsExpandableWrapper} onClick={toggleExpand}>
             <div className={css.completedTimeWrapper}>
-                    <CompletedTime finishedTime={artifact.finished} latest={latest} />
-      
+                <CompletedTime
+                    finishedTime={artifact.finished}
+                    latest={latest}
+                />
                 {isExpanded ? <IconChevronUp24 /> : <IconChevronDown24 />}
             </div>
             {isExpanded && <Content artifact={artifact} error={item} />}

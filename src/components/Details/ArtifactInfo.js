@@ -60,11 +60,10 @@ ArtifactKeyInfo.propTypes = {
 const EVENT = 'EVENT' || 'event'
 
 const ArtifactInfoType = ({ value }) => {
-    const getType = () =>
-        value === EVENT ? i18n.t('Event') : i18n.t('Enrollment')
+    const type = value === EVENT ? i18n.t('Event') : i18n.t('Enrollment')
     return (
         <ArtifactKeyInfo name={i18n.t('Type')}>
-            <span>{getType()}</span>
+            <span>{type}</span>
         </ArtifactKeyInfo>
     )
 }
