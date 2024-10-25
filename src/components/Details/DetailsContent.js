@@ -38,7 +38,7 @@ CompletedTime.propTypes = {
     latest: PropTypes.bool,
 }
 
-const ExpandableContent = ({ latest, artifact, item }) => {
+const ExpandableContent = ({ isLatestRun, artifact, children }) => {
     const [isExpanded, setIsExpanded] = useState(false)
 
     const toggleExpand = () => {
@@ -46,26 +46,30 @@ const ExpandableContent = ({ latest, artifact, item }) => {
     }
 
     return (
-        <div className={css.detailsExpandableWrapper} onClick={toggleExpand}>
-            <div className={css.completedTimeWrapper}>
+        <div className={css.detailsExpandableWrapper}>
+            <div
+                className={css.completedTimeWrapper}
+                onClick={toggleExpand}
+                role="button"
+            >
                 <CompletedTime
                     finishedTime={artifact.finished}
-                    latest={latest}
+                    latest={isLatestRun}
                 />
                 {isExpanded ? <IconChevronUp24 /> : <IconChevronDown24 />}
             </div>
-            {isExpanded && <Content artifact={artifact} error={item} />}
+            {isExpanded && children}
         </div>
     )
 }
 
 ExpandableContent.propTypes = {
-    latest: PropTypes.bool,
+    isLatestRun: PropTypes.bool,
     artifact: PropTypes.shape({
         finished: PropTypes.string,
         message: PropTypes.string,
     }),
-    item: PropTypes.object,
+    children: PropTypes.node,
 }
 
 export const DetailsContent = ({ artifact }) => {
@@ -74,10 +78,11 @@ export const DetailsContent = ({ artifact }) => {
             {artifact.errors.map((error, index) => (
                 <ExpandableContent
                     key={index}
-                    latest={index === 0}
+                    isLatestRun={index === 0}
                     artifact={artifact}
-                    item={error}
-                />
+                >
+                    <Content artifact={artifact} error={error} />
+                </ExpandableContent>
             ))}
         </div>
     )
