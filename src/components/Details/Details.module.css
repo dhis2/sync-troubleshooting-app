@@ -64,7 +64,6 @@
     transition: all 0.3s;
     cursor: pointer;
     margin-block-start: var(--spacers-dp12);
-    margin-left: var(--spacers-dp12);
 }
 
 .chooseArtifactMessage {
