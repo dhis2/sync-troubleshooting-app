@@ -1,4 +1,4 @@
-import { CircularLoader, IconErrorFilled16 } from '@dhis2/ui'
+import { CircularLoader, IconErrorFilled16, colors } from '@dhis2/ui'
 import PropTypes from 'prop-types'
 import React from 'react'
 import css from './List.module.css'
@@ -6,7 +6,7 @@ import css from './List.module.css'
 export const ErrorIcon = ({ numberOfErrors }) => {
     return (
         <span className={css.errorIcon}>
-            <IconErrorFilled16 color="#B71C1C" />
+            <IconErrorFilled16 color={colors.red700} />
             <span>{numberOfErrors}</span>
         </span>
     )
@@ -24,7 +24,7 @@ export const StatusIcon = ({ count, loading }) => {
     }
 
     if (count === 0) {
-        return <IconErrorFilled16 color="#B71C1C" />
+        return <IconErrorFilled16 color={colors.red700} />
     }
 
     if (count > 0) {
