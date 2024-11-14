@@ -5,8 +5,47 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-09-25T15:05:33.634Z\n"
-"PO-Revision-Date: 2024-09-25T15:05:33.634Z\n"
+"POT-Creation-Date: 2024-11-14T12:53:03.434Z\n"
+"PO-Revision-Date: 2024-11-14T12:53:03.434Z\n"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Code"
+msgstr "Code"
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Enrollment"
+msgstr "Enrollment"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "{{label}}:"
+msgstr "{{label}}:"
+
+msgid "Latest error {{time}}"
+msgstr "Latest error {{time}}"
+
+msgid "Error {{time}}"
+msgstr "Error {{time}}"
+
+msgid "No errors found in the last 24 hours."
+msgstr "No errors found in the last 24 hours."
+
+msgid "Choose an error from the list to see the details."
+msgstr "Choose an error from the list to see the details."
+
+msgid "An unknown error occurred"
+msgstr "An unknown error occurred"
+
+msgid "Failed to load"
+msgstr "Failed to load"
+
+msgid "Tracked Entity"
+msgstr "Tracked Entity"
 
 msgid "Errors observed in the past 24 hours."
 msgstr "Errors observed in the past 24 hours."
@@ -20,9 +59,6 @@ msgstr "Sort"
 msgid "Sort by"
 msgstr "Sort by"
 
-msgid "Event"
-msgstr "Event"
-
 msgid "Tracker"
 msgstr "Tracker"
 
@@ -32,11 +68,11 @@ msgstr "Latest"
 msgid "Oldest"
 msgstr "Oldest"
 
-msgid "Type"
-msgstr "Type"
-
 msgid "A-Z"
 msgstr "A-Z"
 
 msgid "Synchronization Troubleshooting"
 msgstr "Synchronization Troubleshooting"
+
+msgid "Now"
+msgstr "Now"

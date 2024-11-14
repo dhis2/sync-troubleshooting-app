@@ -1,0 +1,120 @@
+.wrapper {
+    padding: var(--spacers-dp16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp32);
+}
+
+.artifactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp12);
+}
+
+.artifactInfo .header {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.artifactInfo .header h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.keyInfoWrapper {
+    display: flex;
+    gap: 80px;
+}
+
+.keyInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp8);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.artifactInfo h3 {
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+}
+
+.detailsContentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp32);
+}
+
+.detailsContentWrapper .header {
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    gap: var(--spacers-dp16);
+}
+
+.detailsContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s;
+    cursor: pointer;
+    margin-block-start: var(--spacers-dp12);
+}
+
+.chooseArtifactMessage {
+    text-align: center;
+    color: var(--colors-grey700);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: var(--spacers-dp16);
+    justify-content: center;
+}
+
+.detailsItem {
+    color: var(--colors-grey900);
+    margin-block-end: var(--spacers-dp8);
+}
+
+.detailsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp8);
+    padding-block-start: var(--spacers-dp24);
+    color: var(--colors-grey900);
+}
+
+.detailsItemLabel {
+    color: var(--colors-grey700);
+}
+
+.detailsItemValue {
+    color: var(--colors-grey900);
+    margin-inline-start: var(--spacers-dp8);
+}
+
+.detailsExpandableWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp8);
+}
+
+.detailsExpandableWrapper .header {
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    gap: var(--spacers-dp16);
+}
+
+.completedTimeWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s;
+    cursor: pointer;
+}

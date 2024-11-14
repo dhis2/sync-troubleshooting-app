@@ -1,0 +1,26 @@
+.notice {
+    display: flex;
+    align-items: center;
+    background-color: var(--colors-red050);
+    border-radius: 3px;
+    padding: var(--spacers-dp12);
+    gap: var(--spacers-dp16);
+    min-width: 600px;
+}
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacers-dp12);
+}
+
+.contentWrapper .header {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--colors-red800);
+}
+
+.content {
+    font-size: 14px;
+    font-weight: 400;
+}

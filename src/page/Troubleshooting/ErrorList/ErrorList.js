@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import {
+    DetailsView,
+    ErrorOrLoading,
     EVENT,
     Layout,
+    List,
     Notice,
     SORT,
     Toolbar,
@@ -14,8 +17,10 @@ export const ErrorList = () => {
     const [search, setSearch] = useState('')
     const [selectedTab, setSelectedTab] = useState(EVENT)
     const [selectedSort, setSelectedSort] = useState(SORT['latest'].value)
+    const [selectedArtifact, setSelectedArtifact] = useState(null)
 
     const selectedEvent = selectedTab === EVENT
+    const loading = false //only using this variable with mock data
 
     return (
         <div className={css.listWrapper}>
@@ -31,25 +36,21 @@ export const ErrorList = () => {
                 selectedEvent={selectedEvent}
             />
             <Layout>
-                <div>
-                    <Notice />
+                <ErrorOrLoading loading={loading}>
                     <div>
-                        {errorListTest.map(({ type, code, id }) => (
-                            <ListItem key={id} type={type} code={code} />
-                        ))}
+                        <Notice />
+                        <List
+                            setSelectedArtifact={setSelectedArtifact}
+                            selectedArtifact={selectedArtifact}
+                            artifacts={errorListTest}
+                        />
                     </div>
-                </div>
+                </ErrorOrLoading>
+                <DetailsView
+                    selectedArtifact={selectedArtifact}
+                    artifacts={errorListTest}
+                />
             </Layout>
         </div>
     )
 }
-
-const ListItem = ({ type, code }) => (
-    <div>
-        <span>{type}</span>
-        <VerticalDivider />
-        <span>{code}</span>
-    </div>
-)
-
-const VerticalDivider = () => <span>|</span>
