@@ -3,20 +3,20 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import css from './Notice.module.css'
 
-export const Notice = ({ title, children, status }) => {
+export const NoticeDetails = ({ title, loading, children }) => {
     return (
         <div className={css.notice}>
-            {status === 'loading' && <CircularLoader small />}
+            {loading && <CircularLoader small />}
             <div className={css.contentWrapper}>
-                {title && <header>{title}</header>}
+                {title && <span className={css.header}>{title}</span>}
                 <div className={css.content}>{children}</div>
             </div>
         </div>
     )
 }
 
-Notice.propTypes = {
+NoticeDetails.propTypes = {
     children: PropTypes.node,
-    status: PropTypes.oneOf(['loading', 'error']),
     title: PropTypes.string,
+    loading: PropTypes.bool,
 }

@@ -33,9 +33,9 @@ ArtifactInfo.propTypes = {
 
 const ArtifactHeader = ({ name }) => {
     return (
-        <header>
+        <span className={css.header}>
             <h2>{name}</h2>
-        </header>
+        </span>
     )
 }
 

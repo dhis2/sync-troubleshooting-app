@@ -13,7 +13,7 @@
     cursor: initial;
 }
 
-.listItem header {
+.listItem .header {
     font-size: 14px;
     font-weight: 500;
 }

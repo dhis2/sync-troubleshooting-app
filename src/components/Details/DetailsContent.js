@@ -2,7 +2,7 @@ import { useTimeZoneConversion } from '@dhis2/app-runtime'
 import i18n from '@dhis2/d2-i18n'
 import { IconChevronDown24, IconChevronUp24 } from '@dhis2/ui'
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { selectedLocale } from '../../utils'
 import { StatusIcon } from '../List'
 import { Content } from './Content'
@@ -18,7 +18,10 @@ const CompletedTime = ({ finishedTime, latest }) => {
     }).format(latestRun)
 
     return (
-        <header title={latestRun.getClientZonedISOString()}>
+        <span
+            className={css.header}
+            title={latestRun.getClientZonedISOString()}
+        >
             {latest
                 ? i18n.t('Latest error {{time}}', {
                       time: formattedLatestRun,
@@ -29,7 +32,7 @@ const CompletedTime = ({ finishedTime, latest }) => {
                       interpolation: { escapeValue: false },
                   })}
             <StatusIcon count={0} />
-        </header>
+        </span>
     )
 }
 
@@ -41,9 +44,9 @@ CompletedTime.propTypes = {
 const ExpandableContent = ({ isLatestRun, artifact, children }) => {
     const [isExpanded, setIsExpanded] = useState(false)
 
-    const toggleExpand = () => {
-        setIsExpanded(!isExpanded)
-    }
+    const toggleExpand = useCallback(() => {
+        setIsExpanded((prevExpanded) => !prevExpanded)
+    }, [])
 
     return (
         <div className={css.detailsExpandableWrapper}>

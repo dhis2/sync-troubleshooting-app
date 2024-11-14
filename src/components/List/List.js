@@ -43,7 +43,7 @@ export const ListItem = memo(function ListItem({
             onClick={() => setSelectedArtifact(artifact)}
         >
             <div className={css.artifactInfo}>
-                <header>{artifact.message}</header>
+                <span className={css.header}>{artifact.message}</span>
                 <div className={css.subtitle}>
                     <span>{getType(artifact.type)}</span>
                     <VerticalDivider />

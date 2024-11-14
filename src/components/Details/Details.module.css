@@ -11,7 +11,7 @@
     gap: var(--spacers-dp12);
 }
 
-.artifactInfo header {
+.artifactInfo .header {
     margin: 0;
     display: flex;
     align-items: center;
@@ -19,7 +19,7 @@
     gap: 6px;
 }
 
-.artifactInfo header h2 {
+.artifactInfo .header h2 {
     font-size: 18px;
     font-weight: 500;
     margin: 0;
@@ -50,7 +50,7 @@
     gap: var(--spacers-dp32);
 }
 
-.detailsContentWrapper header {
+.detailsContentWrapper .header {
     font-size: 14px;
     font-weight: 500;
     display: flex;
@@ -104,7 +104,7 @@
     gap: var(--spacers-dp8);
 }
 
-.detailsExpandableWrapper header {
+.detailsExpandableWrapper .header {
     font-size: 14px;
     font-weight: 500;
     display: flex;
