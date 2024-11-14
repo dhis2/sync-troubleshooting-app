@@ -27,7 +27,7 @@ List.propTypes = {
     selectedArtifact: PropTypes.object,
 }
 
-const EVENT = 'EVENT' || 'event'
+const EVENT = 'EVENT'
 
 export const ListItem = memo(function ListItem({
     setSelectedArtifact,

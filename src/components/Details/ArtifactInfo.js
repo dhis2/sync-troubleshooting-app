@@ -57,7 +57,7 @@ ArtifactKeyInfo.propTypes = {
     children: PropTypes.node,
 }
 
-const EVENT = 'EVENT' || 'event'
+const EVENT = 'EVENT'
 
 const ArtifactInfoType = ({ value }) => {
     const type = value === EVENT ? i18n.t('Event') : i18n.t('Enrollment')

@@ -1,5 +1,4 @@
 import i18n from '@dhis2/d2-i18n'
-import isEmpty from 'lodash/isEmpty'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Details } from './Details'
@@ -18,7 +17,7 @@ const ChooseArtifact = () => (
 )
 
 export const DetailsView = ({ artifacts, selectedArtifact }) => {
-    if (isEmpty(artifacts)) {
+    if (artifacts.length === 0) {
         return <NoErrorsFound />
     }
 
