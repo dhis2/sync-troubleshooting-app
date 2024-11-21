@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-11-14T12:53:03.434Z\n"
-"PO-Revision-Date: 2024-11-14T12:53:03.434Z\n"
+"POT-Creation-Date: 2024-11-19T14:18:26.260Z\n"
+"PO-Revision-Date: 2024-11-19T14:18:26.260Z\n"
 
 msgid "Status"
 msgstr "Status"
@@ -44,8 +44,8 @@ msgstr "An unknown error occurred"
 msgid "Failed to load"
 msgstr "Failed to load"
 
-msgid "Tracked Entity"
-msgstr "Tracked Entity"
+msgid "Tracker"
+msgstr "Tracker"
 
 msgid "Errors observed in the past 24 hours."
 msgstr "Errors observed in the past 24 hours."
@@ -58,9 +58,6 @@ msgstr "Sort"
 
 msgid "Sort by"
 msgstr "Sort by"
-
-msgid "Tracker"
-msgstr "Tracker"
 
 msgid "Latest"
 msgstr "Latest"

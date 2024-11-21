@@ -11,9 +11,9 @@ export const SORT = {
         value: 'oldest',
         sorter: (a, b) => a.finished.localeCompare(b.finished),
     },
-    type: {
-        label: i18n.t('Type'),
-        value: 'type',
+    code: {
+        label: i18n.t('Code'),
+        value: 'code',
         sorter: (a, b) => a.code.localeCompare(b.code),
     },
     'A-Z': {

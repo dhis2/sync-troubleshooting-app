@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     DetailsView,
     ErrorOrLoading,
     EVENT,
+    filterSearchElements,
     Layout,
     List,
     Notice,
     SORT,
+    sortElements,
     Toolbar,
     ToolbarTabs,
 } from '../../../components'
@@ -18,9 +20,23 @@ export const ErrorList = () => {
     const [selectedTab, setSelectedTab] = useState(EVENT)
     const [selectedSort, setSelectedSort] = useState(SORT['latest'].value)
     const [selectedArtifact, setSelectedArtifact] = useState(null)
+    const [updatedList, setUpdatedList] = useState(errorListTest)
 
     const selectedEvent = selectedTab === EVENT
     const loading = false //only using this variable with mock data
+
+    useEffect(() => {
+        const filteredList = errorListTest.filter(
+            (error) => error.type === selectedTab
+        )
+        const sortedList = sortElements(filteredList, SORT[selectedSort].sorter)
+        const list = filterSearchElements(sortedList, search)
+        setUpdatedList(list)
+    }, [selectedTab, selectedSort, search])
+
+    useEffect(() => {
+        setSelectedArtifact(null)
+    }, [selectedTab])
 
     return (
         <div className={css.listWrapper}>
@@ -42,13 +58,13 @@ export const ErrorList = () => {
                         <List
                             setSelectedArtifact={setSelectedArtifact}
                             selectedArtifact={selectedArtifact}
-                            artifacts={errorListTest}
+                            artifacts={updatedList}
                         />
                     </div>
                 </ErrorOrLoading>
                 <DetailsView
                     selectedArtifact={selectedArtifact}
-                    artifacts={errorListTest}
+                    artifacts={updatedList}
                 />
             </Layout>
         </div>

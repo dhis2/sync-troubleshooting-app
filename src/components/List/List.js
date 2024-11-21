@@ -27,7 +27,7 @@ List.propTypes = {
     selectedArtifact: PropTypes.object,
 }
 
-const EVENT = 'EVENT'
+const EVENT = 'event'
 
 export const ListItem = memo(function ListItem({
     setSelectedArtifact,
@@ -35,7 +35,7 @@ export const ListItem = memo(function ListItem({
     selected,
 }) {
     const getType = (value) =>
-        value === EVENT ? i18n.t('Event') : i18n.t('Tracked Entity')
+        value === EVENT ? i18n.t('Event') : i18n.t('Tracker')
 
     return (
         <div

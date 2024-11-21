@@ -141,8 +141,8 @@ test('"List" is sorted from latest to oldest element', () => {
     expect(sortElements([...errorList], expression)).toEqual(sortedList)
 })
 
-test('"List" is sorted by element type or code', () => {
-    const expression = SORT['type'].sorter
+test('"List" is sorted by element code or code', () => {
+    const expression = SORT['code'].sorter
 
     const sortedList = [
         {
@@ -190,8 +190,8 @@ test('"List" is sorted by element type or code', () => {
     expect(sortElements([...errorList], expression)).toEqual(sortedList)
 })
 
-test('"List" is sorted by element type or code', () => {
-    const expression = SORT['type'].sorter
+test('"List" is sorted by element code or code', () => {
+    const expression = SORT['code'].sorter
 
     const sortedList = [
         {
