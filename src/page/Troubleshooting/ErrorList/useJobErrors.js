@@ -1,5 +1,5 @@
 import { useDataQuery } from '@dhis2/app-runtime'
-import flattenDeep from 'lodash-es/flattenDeep'
+import flattenDeep from 'lodash/flattenDeep'
 import { useState, useEffect } from 'react'
 
 const errorQuery = {
