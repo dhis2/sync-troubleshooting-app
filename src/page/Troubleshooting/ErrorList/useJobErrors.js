@@ -19,9 +19,13 @@ const errorQuery = {
             ],
         },
     },
+}
+
+const usersQuery = {
     users: {
         resource: 'users',
-        params: {
+        params: ({ ids }) => ({
+            filter: `id:in:[${ids}]`,
             paging: false,
             fields: [
                 'id',
@@ -29,7 +33,7 @@ const errorQuery = {
                 'displayName',
                 'userGroups[id,name,displayName]',
             ],
-        },
+        }),
     },
 }
 
@@ -70,6 +74,8 @@ export const useJobConfigurationErrors = () => {
         lazy: true,
     })
 
+    const { refetch: fetchUsers } = useDataQuery(usersQuery, { lazy: true })
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -79,17 +85,21 @@ export const useJobConfigurationErrors = () => {
                 const fetchedErrors = errorResponse?.errors || []
 
                 setErrors(fetchedErrors)
-                setUsers(errorResponse?.users?.users || [])
                 setPrograms(errorResponse?.programs?.programs || [])
 
                 const errorIds = flattenDeep(
                     fetchedErrors.map((error) => error.errors.map((e) => e.id))
                 )
+                const userIds = fetchedErrors.map((error) => error.user)
 
                 if (errorIds.length > 0) {
                     const eventResponse = await fetchEvents({ ids: errorIds })
+                    const userResponse = await fetchUsers({ ids: userIds })
                     const fetchedEvents = eventResponse?.events || []
+                    const fetchedUsers = userResponse?.users?.users || []
+
                     setEvents(fetchedEvents)
+                    setUsers(fetchedUsers)
                 }
             } catch (err) {
                 setError(err)
