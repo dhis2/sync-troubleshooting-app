@@ -156,6 +156,24 @@ const groupAndSortByMessage = (objects) => {
     return groupedArray
 }
 
+const getUserInfo = (userId, key, users) => {
+    const user = users?.find((u) => u.id === userId)
+    return user?.[key]?.map((u) => u.displayName).join(', ') || null
+}
+
+const getProgramAndStage = (programId, stageId, programs) => {
+    const program = programs?.find((p) => p.id === programId)
+    const programStage = program?.programStages?.find((ps) => ps.id === stageId)
+    const type =
+        program?.programType === 'WITHOUT_REGISTRATION' ? 'event' : 'tracker'
+
+    return {
+        programName: program?.displayName || null,
+        programStageName: programStage?.displayName || null,
+        type: type,
+    }
+}
+
 /**
  * Return list of detailed errors
  * */
@@ -164,35 +182,14 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
         return { groupedElements: [] }
     }
 
-    const getUserGroups = (userId) => {
-        const user = users?.find((u) => u.id === userId)
-        return user?.userGroups?.map((u) => u.displayName).join(', ') || null
-    }
-
-    const getProgramAndStage = (programId, stageId) => {
-        const program = programs?.find((p) => p.id === programId)
-        const programStage = program?.programStages?.find(
-            (ps) => ps.id === stageId
-        )
-        const type =
-            program?.programType === 'WITHOUT_REGISTRATION'
-                ? 'event'
-                : 'tracker'
-
-        return {
-            programName: program?.displayName || null,
-            programStageName: programStage?.displayName || null,
-            type: type,
-        }
-    }
-
     const errorList = errors.flatMap((item) =>
         item?.errors?.map((entry) => {
             const currentUser = users?.find((user) => user.id === item.user)
             const eventElements = getEventData(entry, events)
             const { programName, programStageName, type } = getProgramAndStage(
                 eventElements.program,
-                eventElements.programStage
+                eventElements.programStage,
+                programs
             )
 
             return {
@@ -207,7 +204,7 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
                 enrollment: eventElements?.enrollment || null,
                 programStage: programStageName || eventElements?.programStage,
                 event: entry.id,
-                userGroups: getUserGroups(item.user),
+                userGroups: getUserInfo(item.user, 'userGroups', users),
             }
         })
     )
