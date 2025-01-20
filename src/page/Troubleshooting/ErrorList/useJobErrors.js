@@ -10,14 +10,25 @@ const errorQuery = {
         resource: 'programs',
         params: {
             paging: false,
-            fields: ['id', 'displayName', 'name', 'programStages[id,name]'],
+            fields: [
+                'id',
+                'displayName',
+                'name',
+                'programType',
+                'programStages[id,displayName,name]',
+            ],
         },
     },
     users: {
         resource: 'users',
         params: {
             paging: false,
-            fields: ['id', 'name', 'userGroups[id,name]'],
+            fields: [
+                'id',
+                'name',
+                'displayName',
+                'userGroups[id,name,displayName]',
+            ],
         },
     },
 }
@@ -79,8 +90,6 @@ export const useJobConfigurationErrors = () => {
                     const eventResponse = await fetchEvents({ ids: errorIds })
                     const fetchedEvents = eventResponse?.events || []
                     setEvents(fetchedEvents)
-                } else {
-                    setEvents([])
                 }
             } catch (err) {
                 setError(err)
@@ -157,7 +166,7 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
 
     const getUserGroups = (userId) => {
         const user = users?.find((u) => u.id === userId)
-        return user?.userGroups?.map((u) => u.name).join(', ') || null
+        return user?.userGroups?.map((u) => u.displayName).join(', ') || null
     }
 
     const getProgramAndStage = (programId, stageId) => {
@@ -165,9 +174,15 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
         const programStage = program?.programStages?.find(
             (ps) => ps.id === stageId
         )
+        const type =
+            program?.programType === 'WITHOUT_REGISTRATION'
+                ? 'event'
+                : 'tracker'
+
         return {
-            programName: program?.name || null,
-            programStageName: programStage?.name || null,
+            programName: program?.displayName || null,
+            programStageName: programStage?.displayName || null,
+            type: type,
         }
     }
 
@@ -175,7 +190,7 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
         item?.errors?.map((entry) => {
             const currentUser = users?.find((user) => user.id === item.user)
             const eventElements = getEventData(entry, events)
-            const { programName, programStageName } = getProgramAndStage(
+            const { programName, programStageName, type } = getProgramAndStage(
                 eventElements.program,
                 eventElements.programStage
             )
@@ -184,9 +199,9 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
                 ...entry,
                 finished: item.finished,
                 jobId: item.id,
-                user: currentUser?.name || item.user,
+                user: currentUser?.displayName || item.user,
                 status: 'Error',
-                type: eventElements?.type || null,
+                type: type || null,
                 orgUnit: eventElements?.orgUnit || null,
                 program: programName,
                 enrollment: eventElements?.enrollment || null,
