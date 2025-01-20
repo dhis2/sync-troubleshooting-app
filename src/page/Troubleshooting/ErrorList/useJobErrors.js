@@ -1,5 +1,4 @@
 import { useDataQuery } from '@dhis2/app-runtime'
-import flattenDeep from 'lodash/flattenDeep'
 import { useState, useEffect } from 'react'
 
 const errorQuery = {
@@ -87,9 +86,9 @@ export const useJobConfigurationErrors = () => {
                 setErrors(fetchedErrors)
                 setPrograms(errorResponse?.programs?.programs || [])
 
-                const errorIds = flattenDeep(
-                    fetchedErrors.map((error) => error.errors.map((e) => e.id))
-                )
+                const errorIds = fetchedErrors
+                    .flatMap((e) => e.errors)
+                    .map(({ id }) => id)
                 const userIds = fetchedErrors.map((error) => error.user)
 
                 if (errorIds.length > 0) {
