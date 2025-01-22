@@ -46,12 +46,16 @@ export const contentItems = [
         label: 'Tracked Entity Attribute',
     },
     {
-        value: 'user',
+        value: 'userId',
         label: 'User ID',
     },
     {
         value: 'userGroups',
         label: 'User groups',
+    },
+    {
+        value: 'userRoles',
+        label: 'User roles',
     },
 ]
 

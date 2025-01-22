@@ -32,6 +32,7 @@ const usersQuery = {
                 'name',
                 'displayName',
                 'userGroups[id,name,displayName]',
+                'userRoles[id,name,displayName]',
             ],
         }),
     },
@@ -204,6 +205,7 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
                 finished: item.finished,
                 jobId: item.id,
                 user: currentUser?.displayName || item.user,
+                userId: item.user,
                 status: 'Error',
                 type: type || null,
                 orgUnit: eventElements?.orgUnit || null,
@@ -212,6 +214,7 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
                 programStage: programStageName || eventElements?.programStage,
                 event: entry.id,
                 userGroups: getUserInfo(item.user, 'userGroups', users),
+                userRoles: getUserInfo(item.user, 'userRoles', users),
             }
         })
     )
