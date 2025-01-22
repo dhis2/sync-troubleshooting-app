@@ -12,27 +12,27 @@ import {
     Toolbar,
     ToolbarTabs,
 } from '../../../components'
-import { errorListTest } from './jobErrorTest'
 import css from './List.module.css'
+import { useJobErrors } from './useJobErrors'
 
 export const ErrorList = () => {
+    const { jobErrors, loading } = useJobErrors()
     const [search, setSearch] = useState('')
     const [selectedTab, setSelectedTab] = useState(EVENT)
     const [selectedSort, setSelectedSort] = useState(SORT['latest'].value)
     const [selectedArtifact, setSelectedArtifact] = useState(null)
-    const [updatedList, setUpdatedList] = useState(errorListTest)
+    const [updatedList, setUpdatedList] = useState(jobErrors)
 
     const selectedEvent = selectedTab === EVENT
-    const loading = false //only using this variable with mock data
 
     useEffect(() => {
-        const filteredList = errorListTest.filter(
+        const filteredList = jobErrors?.filter(
             (error) => error.type === selectedTab
         )
         const sortedList = sortElements(filteredList, SORT[selectedSort].sorter)
         const list = filterSearchElements(sortedList, search)
         setUpdatedList(list)
-    }, [selectedTab, selectedSort, search])
+    }, [jobErrors, selectedTab, selectedSort, search])
 
     useEffect(() => {
         setSelectedArtifact(null)

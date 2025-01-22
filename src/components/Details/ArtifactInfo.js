@@ -2,6 +2,7 @@ import i18n from '@dhis2/d2-i18n'
 import { Tag, Divider } from '@dhis2/ui'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { EVENT } from '../../shared'
 import css from './Details.module.css'
 
 export const ArtifactInfo = ({ artifact }) => {
@@ -56,8 +57,6 @@ ArtifactKeyInfo.propTypes = {
     name: PropTypes.string,
     children: PropTypes.node,
 }
-
-const EVENT = 'EVENT'
 
 const ArtifactInfoType = ({ value }) => {
     const type = value === EVENT ? i18n.t('Event') : i18n.t('Enrollment')
