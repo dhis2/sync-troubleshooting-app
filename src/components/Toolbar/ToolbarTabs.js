@@ -2,10 +2,8 @@ import i18n from '@dhis2/d2-i18n'
 import { Tab, TabBar } from '@dhis2/ui'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { EVENT, TRACKER } from '../../shared'
 import css from './Toolbar.module.css'
-
-export const EVENT = 'event'
-export const TRACKER = 'tracker'
 
 export const ToolbarTabs = ({ selectedTab, setSelectedTab }) => {
     return (

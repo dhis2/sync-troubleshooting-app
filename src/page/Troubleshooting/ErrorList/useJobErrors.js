@@ -1,5 +1,6 @@
 import { useDataQuery } from '@dhis2/app-runtime'
 import { useState, useEffect } from 'react'
+import { EVENT, TRACKER, WITHOUT_REGISTRATION } from '../../../shared'
 
 const errorQuery = {
     errors: {
@@ -119,9 +120,7 @@ export const useJobConfigurationErrors = () => {
 const getEventData = (error, events) => {
     const currentEvent = events?.find((e) => e.event === error.id)
     const type =
-        currentEvent?.programType === 'WITHOUT_REGISTRATION'
-            ? 'event'
-            : 'tracker'
+        currentEvent?.programType === WITHOUT_REGISTRATION ? EVENT : TRACKER
 
     return {
         ...currentEvent,
@@ -173,8 +172,7 @@ const getUserInfo = (userId, key, users) => {
 const getProgramAndStage = (programId, stageId, programs) => {
     const program = programs?.find((p) => p.id === programId)
     const programStage = program?.programStages?.find((ps) => ps.id === stageId)
-    const type =
-        program?.programType === 'WITHOUT_REGISTRATION' ? 'event' : 'tracker'
+    const type = program?.programType === WITHOUT_REGISTRATION ? EVENT : TRACKER
 
     return {
         programName: program?.displayName || null,
