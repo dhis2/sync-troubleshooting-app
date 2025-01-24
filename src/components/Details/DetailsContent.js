@@ -46,7 +46,7 @@ CompletedTime.propTypes = {
 }
 
 const ExpandableContent = ({ isLatestRun, finishedTime, children }) => {
-    const [isExpanded, setIsExpanded] = useState(false)
+    const [isExpanded, setIsExpanded] = useState(isLatestRun)
 
     const toggleExpand = useCallback(() => {
         setIsExpanded((prevExpanded) => !prevExpanded)
