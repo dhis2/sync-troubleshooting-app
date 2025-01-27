@@ -1,5 +1,6 @@
 import { useDataQuery } from '@dhis2/app-runtime'
 import { useState, useEffect } from 'react'
+import { EVENT, TRACKER, WITHOUT_REGISTRATION } from '../../../shared'
 
 const errorQuery = {
     errors: {
@@ -31,6 +32,7 @@ const usersQuery = {
                 'name',
                 'displayName',
                 'userGroups[id,name,displayName]',
+                'userRoles[id,name,displayName]',
             ],
         }),
     },
@@ -119,9 +121,7 @@ export const useJobConfigurationErrors = () => {
 const getEventData = (error, events) => {
     const currentEvent = events?.find((e) => e.event === error.id)
     const type =
-        currentEvent?.programType === 'WITHOUT_REGISTRATION'
-            ? 'event'
-            : 'tracker'
+        currentEvent?.programType === WITHOUT_REGISTRATION ? EVENT : TRACKER
 
     return {
         ...currentEvent,
@@ -173,8 +173,7 @@ const getUserInfo = (userId, key, users) => {
 const getProgramAndStage = (programId, stageId, programs) => {
     const program = programs?.find((p) => p.id === programId)
     const programStage = program?.programStages?.find((ps) => ps.id === stageId)
-    const type =
-        program?.programType === 'WITHOUT_REGISTRATION' ? 'event' : 'tracker'
+    const type = program?.programType === WITHOUT_REGISTRATION ? EVENT : TRACKER
 
     return {
         programName: program?.displayName || null,
@@ -206,6 +205,7 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
                 finished: item.finished,
                 jobId: item.id,
                 user: currentUser?.displayName || item.user,
+                userId: item.user,
                 status: 'Error',
                 type: type || null,
                 orgUnit: eventElements?.orgUnit || null,
@@ -214,6 +214,7 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
                 programStage: programStageName || eventElements?.programStage,
                 event: entry.id,
                 userGroups: getUserInfo(item.user, 'userGroups', users),
+                userRoles: getUserInfo(item.user, 'userRoles', users),
             }
         })
     )

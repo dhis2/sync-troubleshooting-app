@@ -12,10 +12,14 @@ const CompletedTime = ({ finishedTime, latest }) => {
     const { fromServerDate } = useTimeZoneConversion()
     const latestRun = fromServerDate(finishedTime)
 
-    const formattedLatestRun = Intl.DateTimeFormat([selectedLocale], {
+    const formattedDate = Intl.DateTimeFormat([selectedLocale], {
         dateStyle: 'short',
-        timeStyle: 'short',
+        timeStyle: 'medium',
+        hour12: false,
     }).format(latestRun)
+
+    const milliseconds = String(latestRun.getMilliseconds()).padStart(3, '0')
+    const formattedLatestRun = `${formattedDate}.${milliseconds}`
 
     return (
         <span
@@ -41,8 +45,8 @@ CompletedTime.propTypes = {
     latest: PropTypes.bool,
 }
 
-const ExpandableContent = ({ isLatestRun, artifact, children }) => {
-    const [isExpanded, setIsExpanded] = useState(false)
+const ExpandableContent = ({ isLatestRun, finishedTime, children }) => {
+    const [isExpanded, setIsExpanded] = useState(isLatestRun)
 
     const toggleExpand = useCallback(() => {
         setIsExpanded((prevExpanded) => !prevExpanded)
@@ -56,7 +60,7 @@ const ExpandableContent = ({ isLatestRun, artifact, children }) => {
                 role="button"
             >
                 <CompletedTime
-                    finishedTime={artifact.finished}
+                    finishedTime={finishedTime}
                     latest={isLatestRun}
                 />
                 {isExpanded ? <IconChevronUp24 /> : <IconChevronDown24 />}
@@ -68,10 +72,7 @@ const ExpandableContent = ({ isLatestRun, artifact, children }) => {
 
 ExpandableContent.propTypes = {
     isLatestRun: PropTypes.bool,
-    artifact: PropTypes.shape({
-        finished: PropTypes.string,
-        message: PropTypes.string,
-    }),
+    finishedTime: PropTypes.string,
     children: PropTypes.node,
 }
 
@@ -82,7 +83,7 @@ export const DetailsContent = ({ artifact }) => {
                 <ExpandableContent
                     key={index}
                     isLatestRun={index === 0}
-                    artifact={artifact}
+                    finishedTime={error.finished}
                 >
                     <Content artifact={artifact} error={error} />
                 </ExpandableContent>

@@ -2,6 +2,7 @@ import i18n from '@dhis2/d2-i18n'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React, { memo } from 'react'
+import { EVENT } from '../../shared'
 import { LastRunTime } from './LastRunTime'
 import css from './List.module.css'
 import { StatusIcon } from './StatusIcon'
@@ -26,8 +27,6 @@ List.propTypes = {
     artifacts: PropTypes.array,
     selectedArtifact: PropTypes.object,
 }
-
-const EVENT = 'event'
 
 export const ListItem = memo(function ListItem({
     setSelectedArtifact,

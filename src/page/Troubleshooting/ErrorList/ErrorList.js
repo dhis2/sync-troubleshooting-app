@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {
     DetailsView,
     ErrorOrLoading,
-    EVENT,
     filterSearchElements,
     Layout,
     List,
@@ -12,6 +11,7 @@ import {
     Toolbar,
     ToolbarTabs,
 } from '../../../components'
+import { EVENT } from '../../../shared'
 import css from './List.module.css'
 import { useJobErrors } from './useJobErrors'
 
