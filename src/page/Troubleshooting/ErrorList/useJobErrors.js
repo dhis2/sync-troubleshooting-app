@@ -57,6 +57,11 @@ const eventsQuery = {
 }
 
 /**
+ * This version will only display errors from TRACKER_IMPORT_JOB (event and tracker)
+ * */
+const TRACKER_IMPORT_JOB = 'TRACKER_IMPORT_JOB'
+
+/**
  * Fetch errors and events based on the errors IDS
  * */
 export const useJobConfigurationErrors = () => {
@@ -83,7 +88,10 @@ export const useJobConfigurationErrors = () => {
                 setLoading(true)
 
                 const errorResponse = await fetchErrors()
-                const fetchedErrors = errorResponse?.errors || []
+                const fetchedErrors =
+                    errorResponse?.errors?.filter(
+                        (e) => e.type === TRACKER_IMPORT_JOB
+                    ) || []
 
                 setErrors(fetchedErrors)
                 setPrograms(errorResponse?.programs?.programs || [])
