@@ -14,10 +14,11 @@
         "format": "d2-style apply"
     },
     "devDependencies": {
-        "@dhis2/cli-app-scripts": "^11.7.0",
-        "@dhis2/cli-style": "^10.7.3"
+        "@dhis2/cli-app-scripts": "^12.3.0",
+        "@dhis2/cli-style": "^10.7.6"
     },
     "dependencies": {
-        "@dhis2/app-runtime": "^3.10.6"
+        "@dhis2/app-runtime": "^3.13.1",
+        "@dhis2/ui": "^10.1.11"
     }
 }
