@@ -42,7 +42,9 @@ export const ListItem = memo(function ListItem({
             onClick={() => setSelectedArtifact(artifact)}
         >
             <div className={css.artifactInfo}>
-                <span className={css.header}>{artifact.message}</span>
+                <span className={cx(css.header, css.ellipsisMultiline)}>
+                    {artifact.message}
+                </span>
                 <div className={css.subtitle}>
                     <span>{getType(artifact.type)}</span>
                     <VerticalDivider />
