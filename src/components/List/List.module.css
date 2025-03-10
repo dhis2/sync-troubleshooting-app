@@ -18,6 +18,16 @@
     font-weight: 500;
 }
 
+.ellipsisMultiline {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word; /* Prevent long words from causing overflow */
+    max-width: 100%;
+}
+
 .listItem .artifactInfo {
     display: flex;
     flex-direction: column;
