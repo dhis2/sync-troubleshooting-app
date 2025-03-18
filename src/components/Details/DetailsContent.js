@@ -24,7 +24,7 @@ const CompletedTime = ({ finishedTime, latest }) => {
     return (
         <span
             className={css.header}
-            title={latestRun.getClientZonedISOString()}
+            title={latestRun.getServerZonedISOString()}
         >
             {latest
                 ? i18n.t('Latest error {{time}}', {
