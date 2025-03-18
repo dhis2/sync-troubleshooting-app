@@ -4,7 +4,7 @@ module.exports = {
     extends: [config.eslintReact],
     root: true,
     rules: {
-        'import/extensions': ['error', { js: 'never' }],
+        'import/extensions': ['error', { js: 'never', jsx: 'never' }],
         'react/sort-prop-types': 'off',
         'react/prop-types': 'off',
         'react-hooks/exhaustive-deps': 'off',
