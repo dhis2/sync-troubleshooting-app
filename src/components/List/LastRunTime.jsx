@@ -5,7 +5,7 @@ import { getRelativeTime } from '../../utils'
 
 export const LastRunTime = ({ className, value }) => {
     const { fromServerDate } = useTimeZoneConversion()
-    const clientDate = fromServerDate(value)
+    const serverDate = fromServerDate(value)
 
     if (!value) {
         return null
@@ -14,9 +14,9 @@ export const LastRunTime = ({ className, value }) => {
     return (
         <span
             className={className}
-            title={clientDate.getClientZonedISOString()}
+            title={serverDate.getServerZonedISOString()}
         >
-            {getRelativeTime(clientDate)}
+            {getRelativeTime(serverDate)}
         </span>
     )
 }
