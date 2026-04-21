@@ -46,7 +46,6 @@ const singleEventQuery = {
         resource: 'tracker/events',
         id: ({ id }) => id,
         params: {
-            //fields: 'event,program,programStage,enrollment,orgUnit,programType',
             fields: [
                 'event',
                 'program',
