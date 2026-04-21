@@ -1,11 +1,9 @@
-import { useDataQuery } from '@dhis2/app-runtime'
+import { useDataQuery, useDataEngine } from '@dhis2/app-runtime'
 import { useState, useEffect } from 'react'
 import { EVENT, TRACKER, WITHOUT_REGISTRATION } from '../../../shared'
 
 const errorQuery = {
-    errors: {
-        resource: 'jobConfigurations/errors',
-    },
+    errors: { resource: 'jobConfigurations/errors' },
     programs: {
         resource: 'programs',
         params: {
@@ -38,11 +36,17 @@ const usersQuery = {
     },
 }
 
-const eventsQuery = {
-    events: {
+const TRACKER_IMPORT_JOB = 'TRACKER_IMPORT_JOB'
+
+const CONCURRENCY_LIMIT = 10
+
+// Single-event query — works on 2.41, 2.42, 2.43 with no required params
+const singleEventQuery = {
+    event: {
         resource: 'tracker/events',
-        params: ({ ids }) => ({
-            event: ids.join(';'),
+        id: ({ id }) => id,
+        params: {
+            //fields: 'event,program,programStage,enrollment,orgUnit,programType',
             fields: [
                 'event',
                 'program',
@@ -52,18 +56,32 @@ const eventsQuery = {
                 'orgUnit',
             ],
             paging: false,
-        }),
+        },
     },
 }
 
-/**
- * This version will only display errors from TRACKER_IMPORT_JOB (event and tracker)
- * */
-const TRACKER_IMPORT_JOB = 'TRACKER_IMPORT_JOB'
+const withConcurrency = async (items, limit, asyncFn) => {
+    const results = new Array(items.length).fill(null)
+    const queue = items.map((item, index) => ({ item, index }))
 
-/**
- * Fetch errors and events based on the errors IDS
- * */
+    const runWorker = async () => {
+        while (queue.length > 0) {
+            const { item, index } = queue.shift()
+            try {
+                results[index] = await asyncFn(item)
+            } catch {
+                results[index] = null
+            }
+        }
+    }
+
+    await Promise.allSettled(
+        Array.from({ length: Math.min(limit, items.length) }, runWorker)
+    )
+
+    return results.filter(Boolean)
+}
+
 export const useJobConfigurationErrors = () => {
     const [errors, setErrors] = useState([])
     const [events, setEvents] = useState([])
@@ -72,15 +90,13 @@ export const useJobConfigurationErrors = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    const { refetch: fetchErrors } = useDataQuery(errorQuery, {
-        lazy: true,
-    })
+    const engine = useDataEngine()
 
-    const { refetch: fetchEvents } = useDataQuery(eventsQuery, {
-        lazy: true,
-    })
-
+    const { refetch: fetchErrors } = useDataQuery(errorQuery, { lazy: true })
     const { refetch: fetchUsers } = useDataQuery(usersQuery, { lazy: true })
+    const { refetch: fetchSingleEvent } = useDataQuery(singleEventQuery, {
+        lazy: true,
+    })
 
     useEffect(() => {
         const fetchData = async () => {
@@ -96,19 +112,38 @@ export const useJobConfigurationErrors = () => {
                 setErrors(fetchedErrors)
                 setPrograms(errorResponse?.programs?.programs || [])
 
-                const errorIds = fetchedErrors
-                    .flatMap((e) => e.errors)
-                    .map(({ id }) => id)
-                const userIds = fetchedErrors.map((error) => error.user)
+                const errorIds = [
+                    ...new Set(
+                        fetchedErrors
+                            .flatMap((e) => e.errors)
+                            .map(({ id }) => id)
+                    ),
+                ]
+                const userIds = fetchedErrors.map((e) => e.user)
 
                 if (errorIds.length > 0) {
-                    const eventResponse = await fetchEvents({ ids: errorIds })
-                    const userResponse = await fetchUsers({ ids: userIds })
-                    const fetchedEvents = eventResponse?.events || []
-                    const fetchedUsers = userResponse?.users?.users || []
+                    const [fetchedEvents, userResponse] = await Promise.all([
+                        withConcurrency(
+                            errorIds,
+                            CONCURRENCY_LIMIT,
+                            async (id) => {
+                                // creates a fresh independent request each time
+                                const result = await engine.query({
+                                    event: {
+                                        resource: `tracker/events/${id}`,
+                                        params: {
+                                            fields: 'event,program,programStage,enrollment,orgUnit',
+                                        },
+                                    },
+                                })
+                                return result?.event ?? null
+                            }
+                        ),
+                        fetchUsers({ ids: userIds }),
+                    ])
 
                     setEvents(fetchedEvents)
-                    setUsers(fetchedUsers)
+                    setUsers(userResponse?.users?.users || [])
                 }
             } catch (err) {
                 setError(err)
@@ -118,7 +153,7 @@ export const useJobConfigurationErrors = () => {
         }
 
         fetchData()
-    }, [fetchErrors, fetchEvents])
+    }, [fetchErrors, fetchUsers, fetchSingleEvent])
 
     return { errors, events, programs, users, loading, error }
 }
