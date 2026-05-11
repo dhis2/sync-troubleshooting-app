@@ -1,11 +1,9 @@
-import { useDataQuery } from '@dhis2/app-runtime'
+import { useDataQuery, useDataEngine } from '@dhis2/app-runtime'
 import { useState, useEffect } from 'react'
 import { EVENT, TRACKER, WITHOUT_REGISTRATION } from '../../../shared'
 
 const errorQuery = {
-    errors: {
-        resource: 'jobConfigurations/errors',
-    },
+    errors: { resource: 'jobConfigurations/errors' },
     programs: {
         resource: 'programs',
         params: {
@@ -38,32 +36,38 @@ const usersQuery = {
     },
 }
 
-const eventsQuery = {
-    events: {
-        resource: 'tracker/events',
-        params: ({ ids }) => ({
-            event: ids.join(';'),
-            fields: [
-                'event',
-                'program',
-                'programStage',
-                'enrollment',
-                'trackedEntity[id,name,attributes]',
-                'orgUnit',
-            ],
-            paging: false,
-        }),
-    },
-}
-
-/**
- * This version will only display errors from TRACKER_IMPORT_JOB (event and tracker)
- * */
 const TRACKER_IMPORT_JOB = 'TRACKER_IMPORT_JOB'
 
-/**
- * Fetch errors and events based on the errors IDS
- * */
+const CONCURRENCY_LIMIT = 10
+
+const withConcurrency = async (items, limit, asyncFn) => {
+    const results = new Array(items.length).fill(null)
+    const failed = []
+    const queue = items.map((item, index) => ({ item, index }))
+
+    const runWorker = async () => {
+        while (queue.length > 0) {
+            const { item, index } = queue.shift()
+            try {
+                results[index] = await asyncFn(item)
+            } catch (err) {
+                results[index] = null
+                failed.push({ item, error: err })
+            }
+        }
+    }
+
+    await Promise.allSettled(
+        Array.from({ length: Math.min(limit, items.length) }, runWorker)
+    )
+
+    if (failed) {
+        console.error(failed)
+    }
+
+    return { results: results.filter(Boolean), failed }
+}
+
 export const useJobConfigurationErrors = () => {
     const [errors, setErrors] = useState([])
     const [events, setEvents] = useState([])
@@ -71,15 +75,11 @@ export const useJobConfigurationErrors = () => {
     const [programs, setPrograms] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [partialErrors, setPartialErrors] = useState(null)
 
-    const { refetch: fetchErrors } = useDataQuery(errorQuery, {
-        lazy: true,
-    })
+    const engine = useDataEngine()
 
-    const { refetch: fetchEvents } = useDataQuery(eventsQuery, {
-        lazy: true,
-    })
-
+    const { refetch: fetchErrors } = useDataQuery(errorQuery, { lazy: true })
     const { refetch: fetchUsers } = useDataQuery(usersQuery, { lazy: true })
 
     useEffect(() => {
@@ -96,19 +96,46 @@ export const useJobConfigurationErrors = () => {
                 setErrors(fetchedErrors)
                 setPrograms(errorResponse?.programs?.programs || [])
 
-                const errorIds = fetchedErrors
-                    .flatMap((e) => e.errors)
-                    .map(({ id }) => id)
-                const userIds = fetchedErrors.map((error) => error.user)
+                const errorIds = [
+                    ...new Set(
+                        fetchedErrors
+                            .flatMap((e) => e.errors)
+                            .map(({ id }) => id)
+                    ),
+                ]
+                const userIds = fetchedErrors.map((e) => e.user)
 
                 if (errorIds.length > 0) {
-                    const eventResponse = await fetchEvents({ ids: errorIds })
-                    const userResponse = await fetchUsers({ ids: userIds })
-                    const fetchedEvents = eventResponse?.events || []
-                    const fetchedUsers = userResponse?.users?.users || []
+                    const [
+                        { results: fetchedEvents, failed: failedEvents },
+                        userResponse,
+                    ] = await Promise.all([
+                        withConcurrency(
+                            errorIds,
+                            CONCURRENCY_LIMIT,
+                            async (id) => {
+                                // creates a fresh independent request each time
+                                const result = await engine.query({
+                                    event: {
+                                        resource: `tracker/events/${id}`,
+                                        params: {
+                                            fields: 'event,program,programStage,enrollment,orgUnit',
+                                        },
+                                    },
+                                })
+                                return result?.event ?? null
+                            }
+                        ),
+                        fetchUsers({ ids: userIds }),
+                    ])
 
+                    if (failedEvents.length > 0) {
+                        setPartialErrors(
+                            `Could not fetch ${failedEvents.length} of ${errorIds.length} events`
+                        )
+                    }
                     setEvents(fetchedEvents)
-                    setUsers(fetchedUsers)
+                    setUsers(userResponse?.users?.users || [])
                 }
             } catch (err) {
                 setError(err)
@@ -118,9 +145,9 @@ export const useJobConfigurationErrors = () => {
         }
 
         fetchData()
-    }, [fetchErrors, fetchEvents])
+    }, [fetchErrors, fetchUsers])
 
-    return { errors, events, programs, users, loading, error }
+    return { errors, events, programs, users, loading, error, partialErrors }
 }
 
 /**
@@ -236,7 +263,7 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
  * Return grouped errors/artifacts based on events, programs, and users
  * */
 export const useJobErrors = () => {
-    const { errors, events, users, programs, loading, error } =
+    const { errors, events, users, programs, loading, error, partialErrors } =
         useJobConfigurationErrors()
     const [jobErrors, setJobErrors] = useState([])
 
@@ -257,5 +284,6 @@ export const useJobErrors = () => {
         jobErrors,
         loading,
         error,
+        partialErrors,
     }
 }
