@@ -40,27 +40,9 @@ const TRACKER_IMPORT_JOB = 'TRACKER_IMPORT_JOB'
 
 const CONCURRENCY_LIMIT = 10
 
-// Single-event query — works on 2.41, 2.42, 2.43 with no required params
-const singleEventQuery = {
-    event: {
-        resource: 'tracker/events',
-        id: ({ id }) => id,
-        params: {
-            fields: [
-                'event',
-                'program',
-                'programStage',
-                'enrollment',
-                'trackedEntity[id,name,attributes]',
-                'orgUnit',
-            ],
-            paging: false,
-        },
-    },
-}
-
 const withConcurrency = async (items, limit, asyncFn) => {
     const results = new Array(items.length).fill(null)
+    const failed = []
     const queue = items.map((item, index) => ({ item, index }))
 
     const runWorker = async () => {
@@ -68,8 +50,9 @@ const withConcurrency = async (items, limit, asyncFn) => {
             const { item, index } = queue.shift()
             try {
                 results[index] = await asyncFn(item)
-            } catch {
+            } catch (err) {
                 results[index] = null
+                failed.push({ item, error: err })
             }
         }
     }
@@ -78,7 +61,11 @@ const withConcurrency = async (items, limit, asyncFn) => {
         Array.from({ length: Math.min(limit, items.length) }, runWorker)
     )
 
-    return results.filter(Boolean)
+    if (failed) {
+        console.error(failed)
+    }
+
+    return { results: results.filter(Boolean), failed }
 }
 
 export const useJobConfigurationErrors = () => {
@@ -88,14 +75,12 @@ export const useJobConfigurationErrors = () => {
     const [programs, setPrograms] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [partialErrors, setPartialErrors] = useState(null)
 
     const engine = useDataEngine()
 
     const { refetch: fetchErrors } = useDataQuery(errorQuery, { lazy: true })
     const { refetch: fetchUsers } = useDataQuery(usersQuery, { lazy: true })
-    const { refetch: fetchSingleEvent } = useDataQuery(singleEventQuery, {
-        lazy: true,
-    })
 
     useEffect(() => {
         const fetchData = async () => {
@@ -121,7 +106,10 @@ export const useJobConfigurationErrors = () => {
                 const userIds = fetchedErrors.map((e) => e.user)
 
                 if (errorIds.length > 0) {
-                    const [fetchedEvents, userResponse] = await Promise.all([
+                    const [
+                        { results: fetchedEvents, failed: failedEvents },
+                        userResponse,
+                    ] = await Promise.all([
                         withConcurrency(
                             errorIds,
                             CONCURRENCY_LIMIT,
@@ -141,6 +129,11 @@ export const useJobConfigurationErrors = () => {
                         fetchUsers({ ids: userIds }),
                     ])
 
+                    if (failedEvents.length > 0) {
+                        setPartialErrors(
+                            `Could not fetch ${failedEvents.length} of ${errorIds.length} events`
+                        )
+                    }
                     setEvents(fetchedEvents)
                     setUsers(userResponse?.users?.users || [])
                 }
@@ -152,9 +145,9 @@ export const useJobConfigurationErrors = () => {
         }
 
         fetchData()
-    }, [fetchErrors, fetchUsers, fetchSingleEvent])
+    }, [fetchErrors, fetchUsers])
 
-    return { errors, events, programs, users, loading, error }
+    return { errors, events, programs, users, loading, error, partialErrors }
 }
 
 /**
@@ -270,7 +263,7 @@ const prepareErrorList = ({ errors, events, programs, users }) => {
  * Return grouped errors/artifacts based on events, programs, and users
  * */
 export const useJobErrors = () => {
-    const { errors, events, users, programs, loading, error } =
+    const { errors, events, users, programs, loading, error, partialErrors } =
         useJobConfigurationErrors()
     const [jobErrors, setJobErrors] = useState([])
 
@@ -291,5 +284,6 @@ export const useJobErrors = () => {
         jobErrors,
         loading,
         error,
+        partialErrors,
     }
 }
