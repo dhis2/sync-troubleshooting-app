@@ -1,0 +1,90 @@
+# Translators:
+# easylin <lin_xd@126.com>, 2026
+# 晓东 林 <13981924470@126.com>, 2026
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2025-01-28T10:26:50.200Z\n"
+"PO-Revision-Date: 2026-07-23 07:45+0000\n"
+"Last-Translator: 晓东 林 <13981924470@126.com>, 2026\n"
+"Language-Team: Chinese (China) (https://app.transifex.com/hisp-uio/teams/100509/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Access denied"
+msgstr "拒绝随访"
+
+msgid ""
+"You don't have access to the Synchronization Troubleshooting App. Contact a "
+"system administrator to request access."
+msgstr ""
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Code"
+msgstr "代码"
+
+msgid "Event"
+msgstr "事件"
+
+msgid "Enrollment"
+msgstr "报名登记"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "{{label}}:"
+msgstr ""
+
+msgid "Latest error {{time}}"
+msgstr ""
+
+msgid "Error {{time}}"
+msgstr ""
+
+msgid "No errors found in the last 24 hours."
+msgstr ""
+
+msgid "Choose an error from the list to see the details."
+msgstr ""
+
+msgid "An unknown error occurred"
+msgstr "发生一个未知错误"
+
+msgid "Failed to load"
+msgstr ""
+
+msgid "Tracker"
+msgstr "随访"
+
+msgid "Errors observed in the past 24 hours."
+msgstr ""
+
+msgid "Search by message"
+msgstr ""
+
+msgid "Sort"
+msgstr "排序"
+
+msgid "Sort by"
+msgstr "排序"
+
+msgid "Latest"
+msgstr ""
+
+msgid "Oldest"
+msgstr ""
+
+msgid "A-Z"
+msgstr ""
+
+msgid "Synchronization Troubleshooting"
+msgstr ""
+
+msgid "Now"
+msgstr ""
