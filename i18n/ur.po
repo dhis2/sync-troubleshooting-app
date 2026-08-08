@@ -1,0 +1,90 @@
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2026
+# Philip Larsen Donnelly, 2026
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2025-01-28T10:26:50.200Z\n"
+"PO-Revision-Date: 2026-07-23 07:45+0000\n"
+"Last-Translator: Philip Larsen Donnelly, 2026\n"
+"Language-Team: Urdu (https://app.transifex.com/hisp-uio/teams/100509/ur/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ur\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Access denied"
+msgstr "رسائی مسترد"
+
+msgid ""
+"You don't have access to the Synchronization Troubleshooting App. Contact a "
+"system administrator to request access."
+msgstr ""
+
+msgid "Status"
+msgstr "حالت"
+
+msgid "Code"
+msgstr "کوڈ"
+
+msgid "Event"
+msgstr "تقریب"
+
+msgid "Enrollment"
+msgstr "اندراج"
+
+msgid "Type"
+msgstr "ٹائپ"
+
+msgid "{{label}}:"
+msgstr ""
+
+msgid "Latest error {{time}}"
+msgstr ""
+
+msgid "Error {{time}}"
+msgstr ""
+
+msgid "No errors found in the last 24 hours."
+msgstr ""
+
+msgid "Choose an error from the list to see the details."
+msgstr ""
+
+msgid "An unknown error occurred"
+msgstr ""
+
+msgid "Failed to load"
+msgstr ""
+
+msgid "Tracker"
+msgstr "ٹریکر"
+
+msgid "Errors observed in the past 24 hours."
+msgstr ""
+
+msgid "Search by message"
+msgstr ""
+
+msgid "Sort"
+msgstr "ترتیب دیں"
+
+msgid "Sort by"
+msgstr "کی طرف سے ترتیب دیں"
+
+msgid "Latest"
+msgstr ""
+
+msgid "Oldest"
+msgstr ""
+
+msgid "A-Z"
+msgstr ""
+
+msgid "Synchronization Troubleshooting"
+msgstr ""
+
+msgid "Now"
+msgstr ""
