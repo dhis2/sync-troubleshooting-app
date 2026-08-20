@@ -1,0 +1,89 @@
+# Translators:
+# KRG HIS <antonia.bezenchek@informa.pro>, 2026
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2025-01-28T10:26:50.200Z\n"
+"PO-Revision-Date: 2026-07-23 07:45+0000\n"
+"Last-Translator: KRG HIS <antonia.bezenchek@informa.pro>, 2026\n"
+"Language-Team: Arabic (Iraq) (https://app.transifex.com/hisp-uio/teams/100509/ar_IQ/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar_IQ\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+msgid "Access denied"
+msgstr ""
+
+msgid ""
+"You don't have access to the Synchronization Troubleshooting App. Contact a "
+"system administrator to request access."
+msgstr ""
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Code"
+msgstr ""
+
+msgid "Event"
+msgstr "الحدث"
+
+msgid "Enrollment"
+msgstr "التسجيل"
+
+msgid "Type"
+msgstr ""
+
+msgid "{{label}}:"
+msgstr ""
+
+msgid "Latest error {{time}}"
+msgstr ""
+
+msgid "Error {{time}}"
+msgstr ""
+
+msgid "No errors found in the last 24 hours."
+msgstr ""
+
+msgid "Choose an error from the list to see the details."
+msgstr ""
+
+msgid "An unknown error occurred"
+msgstr ""
+
+msgid "Failed to load"
+msgstr ""
+
+msgid "Tracker"
+msgstr ""
+
+msgid "Errors observed in the past 24 hours."
+msgstr ""
+
+msgid "Search by message"
+msgstr ""
+
+msgid "Sort"
+msgstr "فرز"
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Latest"
+msgstr ""
+
+msgid "Oldest"
+msgstr ""
+
+msgid "A-Z"
+msgstr ""
+
+msgid "Synchronization Troubleshooting"
+msgstr ""
+
+msgid "Now"
+msgstr ""
