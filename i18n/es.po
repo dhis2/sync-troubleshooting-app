@@ -1,0 +1,92 @@
+# Translators:
+# Milagros Rodríguez, 2026
+# Pablo Del Médico, 2026
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2025-01-28T10:26:50.200Z\n"
+"PO-Revision-Date: 2026-07-23 07:45+0000\n"
+"Last-Translator: Pablo Del Médico, 2026\n"
+"Language-Team: Spanish (https://app.transifex.com/hisp-uio/teams/100509/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "Access denied"
+msgstr "Acceso denegado"
+
+msgid ""
+"You don't have access to the Synchronization Troubleshooting App. Contact a "
+"system administrator to request access."
+msgstr ""
+"No tiene acceso a la Aplicación de Diagnóstico de Sincronización. Póngase en"
+" contacto con un administrador del sistema para solicitar acceso."
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Code"
+msgstr "Código"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "Enrollment"
+msgstr "Registro"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "{{label}}:"
+msgstr "{{label}}"
+
+msgid "Latest error {{time}}"
+msgstr "Último error {{time}}"
+
+msgid "Error {{time}}"
+msgstr "Error {{time}}"
+
+msgid "No errors found in the last 24 hours."
+msgstr "Ningún error fue encontrado en las últimas 24 horas."
+
+msgid "Choose an error from the list to see the details."
+msgstr "Elija un error de la lista para visualizar los detalles."
+
+msgid "An unknown error occurred"
+msgstr "Se ha producido un error desconocido"
+
+msgid "Failed to load"
+msgstr "Error al cargar"
+
+msgid "Tracker"
+msgstr "Tracker"
+
+msgid "Errors observed in the past 24 hours."
+msgstr "Errores encontrados en las últimas 24 horas."
+
+msgid "Search by message"
+msgstr "Búsqueda por mensaje"
+
+msgid "Sort"
+msgstr "Ordenar"
+
+msgid "Sort by"
+msgstr "Ordenar por"
+
+msgid "Latest"
+msgstr "Más reciente"
+
+msgid "Oldest"
+msgstr "Más antiguo"
+
+msgid "A-Z"
+msgstr "A-Z"
+
+msgid "Synchronization Troubleshooting"
+msgstr "Diagnóstico de Sincronización"
+
+msgid "Now"
+msgstr "Ahora"
